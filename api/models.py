@@ -8,7 +8,7 @@ class Employee(models.Model):
 	user = models.OneToOneField(User,on_delete=models.CASCADE)
 
 	def __str__(self):
-		return f"{self.user.nom} {self.user.prenom} avec comme matricule Num. {self.matricule}" 
+		return f"{self.user.first_name} {self.user.last_name} avec comme matricule Num. {self.matricule}" 
 
 class Client(models.Model):
 	nom = models.CharField(max_length=30,blank=False,null=False)
@@ -30,7 +30,6 @@ class Chambre(models.Model):
 
 
 class Reservation(models.Model):
-	id =  models.SmallIntegerField(primary_key=True)
 	date_debut = models.DateTimeField(auto_now_add=True)
 	date_fin = models.DateTimeField()
 	chambre = models.ForeignKey("Chambre",on_delete=models.PROTECT)
@@ -45,13 +44,13 @@ class Paiement(models.Model):
 	client = models.ForeignKey("Client",on_delete=models.PROTECT)
 
 	def __str__(self):
-		return f"montant payé: {self.montant} par {self.client.nom} {self.client.prenom}" 
+		return f"montant payé: {self.montant} FBU par {self.client.nom} {self.client.prenom}" 
 
 
 class Commande(models.Model):
 	nom_produit = models.CharField(max_length=30)
 	quantite = models.PositiveIntegerField(default=0)
-	prix = models.FloatField(default=0.0)
+	prix = models.FloatField()
 	client = models.ForeignKey("Client",on_delete=models.PROTECT)
 
 	def __str__(self):
