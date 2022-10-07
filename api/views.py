@@ -10,6 +10,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, permissions
 
 from .serializers import *
 from .models import *
